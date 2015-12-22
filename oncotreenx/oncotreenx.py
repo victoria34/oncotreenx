@@ -10,7 +10,6 @@ FILE_URL = "https://raw.githubusercontent.com/cBioPortal/oncotree/master/tumor_t
 
 ## functions
 
-
 def build_oncotree():
 
     # load the file.
