@@ -18,10 +18,11 @@ def build_oncotree():
     the_page = response.read()
 
     # create a graph.
-    g = nx.Graph()
+    g = nx.DiGraph()
 
     # add root node.
-    root = g.add_node("root", {"text":"root"})
+    g.add_node("root", {"text": "root"})
+    root = "root"
 
     # parse the file.
     line_cnt = 0
@@ -68,19 +69,44 @@ def build_oncotree():
             key = tmp[1].strip().replace("(","").replace(")","")
 
             # build node.
-            n = g.add_node(key, {
+            g.add_node(key, {
                 'text': val,
                 'metamaintype': metamaintype,
                 'metacolor': metacolor,
                 'metanci': metanci,
                 'metaumls': metaumls
             })
+            n = key
 
             # add edge.
             g.add_edge(prev_n, n)
+
+            # update previous node.
+            prev_n = n
 
         # increment line count.
         line_cnt += 1
 
     # return the graph.
     return g
+
+def get_basal(g, source):
+
+    # get ancestors.
+    nlist = nx.ancestors(g, source)
+
+    # find the one with predecessor root.
+    hit = None
+    for n in nlist:
+
+        # get predecessor.
+        preds = g.predecessors(n)
+        if len(preds) > 0 and preds[0] == 'root':
+            hit = n
+
+    # sanity check.
+    if hit is None:
+        raise StandardError
+
+    # return the basal ancestor.
+    return hit
