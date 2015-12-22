@@ -6,4 +6,5 @@ setup(name='oncotreenx',
       author_email="jlindsay@jimmy.harvard.edu",
       url="https://github.com/jim-bo/oncotreenx",
       py_modules=['oncotreenx'],
+      install_requires = ['networkx', 'nose'],
       )
