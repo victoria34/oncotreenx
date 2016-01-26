@@ -75,7 +75,6 @@ def build_oncotree(file_path=False):
                 continue
 
             # check if empty.
-            print tokens
             if tokens[i] == "":
                 continue
 
