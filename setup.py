@@ -1,6 +1,6 @@
 from setuptools import setup
 setup(name='oncotreenx',
-      version='0.1',
+      version='0.2.0',
       description="thin networkx wrapper for oncotree",
       author="James Lindsay",
       author_email="jlindsay@jimmy.harvard.edu",

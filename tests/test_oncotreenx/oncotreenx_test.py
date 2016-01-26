@@ -39,7 +39,7 @@ class TestOncotreenxMethods:
         pass
 
     def setup(self):
-        self.g = build_oncotree()
+        self.g = build_oncotree(file_path="data/oncotree_file.txt")
 
     def teardown(self):
         pass

@@ -10,12 +10,23 @@ FILE_URL = "https://raw.githubusercontent.com/cBioPortal/oncotree/master/tumor_t
 
 ## functions
 
-def build_oncotree():
+def build_oncotree(file_path=False):
 
     # load the file.
-    req = urllib2.Request(FILE_URL)
-    response = urllib2.urlopen(req)
-    the_page = response.read()
+    if not file_path:
+
+        # fetch from inter-webs.
+        req = urllib2.Request(FILE_URL)
+        response = urllib2.urlopen(req)
+        the_page = response.read()
+
+        # split into array.
+        lines = the_page.strip().split("\n")
+
+    else:
+
+        # just open the file.
+        lines = open(file_path, "rb")
 
     # create a graph.
     g = nx.DiGraph()
@@ -26,7 +37,7 @@ def build_oncotree():
 
     # parse the file.
     line_cnt = 0
-    for line in the_page.strip().split("\n"):
+    for line in lines:
 
         # skip header.
         if line_cnt == 0:
@@ -59,7 +70,12 @@ def build_oncotree():
         nodes = list()
         for i in range(4):
 
+            # skip empty.
+            if len(tokens) < 2:
+                continue
+
             # check if empty.
+            print tokens
             if tokens[i] == "":
                 continue
 
