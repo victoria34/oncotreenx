@@ -1,5 +1,5 @@
 ## imports
-from oncotreenx import build_oncotree, get_basal
+from oncotreenx import build_oncotree, get_basal, lookup_text
 
 ## testing classes
 class TestOncotreenxConstruction:
@@ -51,3 +51,11 @@ class TestOncotreenxMethods:
 
         # make sure it is correct.
         assert 'BONE' == p
+
+    def test_text_lu(self):
+
+        # get the ancestor.
+        p = lookup_text(self.g, "Adrenal Gland")
+
+        # make sure it is correct.
+        assert 'ADRENAL_GLAND' == p

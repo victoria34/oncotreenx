@@ -125,3 +125,28 @@ def get_basal(g, source):
 
     # return the basal ancestor.
     return hit
+
+def lookup_text(g, text):
+
+    # look to see if we have lu.
+    if 'text_lu' in g.graph:
+        lu = g.graph['text_lu']
+
+    else:
+        # build lookup dictionary.
+        lu = {}
+        for n in g.nodes():
+
+            # build the lookup.
+            lu[g.node[n]['text']] = n
+
+        # save it for re-use.
+        g.graph['text_lu'] = lu
+
+    # return result.
+    if text not in lu:
+        return None
+    else:
+        return lu[text]
+
+
