@@ -51,6 +51,7 @@ class TestOncotreenxMethods:
 
         # make sure it is correct.
         assert 'BONE' == p
+        assert False
 
     def test_text_lu(self):
 

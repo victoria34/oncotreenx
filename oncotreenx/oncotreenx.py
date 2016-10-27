@@ -68,7 +68,7 @@ def build_oncotree(file_path=False):
 
         # build nodes all the way down.
         nodes = list()
-        for i in range(4):
+        for i in range(5):
 
             # skip empty.
             if len(tokens) < 2:
@@ -105,6 +105,7 @@ def build_oncotree(file_path=False):
     # return the graph.
     return g
 
+
 def get_basal(g, source):
 
     # get ancestors.
@@ -125,6 +126,7 @@ def get_basal(g, source):
 
     # return the basal ancestor.
     return hit
+
 
 def lookup_text(g, text):
 
