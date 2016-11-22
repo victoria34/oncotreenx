@@ -80,8 +80,8 @@ def build_oncotree(file_path=False):
 
             # split into two.
             tmp = tokens[i].split("(")
-            val = tmp[0].strip()
-            key = tmp[1].strip().replace("(","").replace(")","")
+            val = tmp[0].strip().replace('"', '').replace("'", '')
+            key = tmp[1].strip().replace("(","").replace(")","").replace('"', '').replace("'", '')
 
             # build node.
             g.add_node(key, {
