@@ -6,7 +6,7 @@ import urllib2
 import networkx as nx
 
 ## constants.
-FILE_URL = "https://raw.githubusercontent.com/cBioPortal/oncotree/master/tumor_tree.txt"
+FILE_URL = "http://oncotree.mskcc.org/api/tumor_types.txt"
 
 ## functions
 
