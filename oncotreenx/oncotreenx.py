@@ -26,13 +26,13 @@ def build_oncotree(file_path=False):
     else:
 
         # just open the file.
-        lines = open(file_path, "rb")
+        lines = open(file_path, "rb").readlines()
 
     # create a graph.
     g = nx.DiGraph()
 
     # add root node.
-    g.add_node("root", {"text": "root"})
+    g.add_node("root", text="root")
     root = "root"
 
     # parse the file.
@@ -67,7 +67,6 @@ def build_oncotree(file_path=False):
         prev_n = root
 
         # build nodes all the way down.
-        nodes = list()
         for i in range(5):
 
             # skip empty.
@@ -84,13 +83,13 @@ def build_oncotree(file_path=False):
             key = tmp[1].strip().replace("(","").replace(")","").replace('"', '').replace("'", '')
 
             # build node.
-            g.add_node(key, {
-                'text': val,
-                'metamaintype': metamaintype,
-                'metacolor': metacolor,
-                'metanci': metanci,
-                'metaumls': metaumls
-            })
+            g.add_node(key,
+                text=val,
+                metamaintype=metamaintype,
+                metacolor=metacolor,
+                metanci=metanci,
+                metaumls=metaumls
+            )
             n = key
 
             # add edge.
@@ -116,7 +115,7 @@ def get_basal(g, source):
     for n in nlist:
 
         # get predecessor.
-        preds = g.predecessors(n)
+        preds = list(g.predecessors(n))
         if len(preds) > 0 and preds[0] == 'root':
             hit = n
 

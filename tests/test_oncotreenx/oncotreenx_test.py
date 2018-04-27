@@ -39,7 +39,7 @@ class TestOncotreenxMethods:
         pass
 
     def setup(self):
-        self.g = build_oncotree(file_path="data/oncotree_file.txt")
+        self.g = build_oncotree(file_path="data/tumor_types.txt")
 
     def teardown(self):
         pass
@@ -51,7 +51,6 @@ class TestOncotreenxMethods:
 
         # make sure it is correct.
         assert 'BONE' == p
-        assert False
 
     def test_text_lu(self):
 
