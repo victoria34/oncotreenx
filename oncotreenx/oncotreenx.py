@@ -44,21 +44,21 @@ def build_oncotree(file_path=False):
 
     # parse the file.
     line_cnt = 0
+    old_style = False
     for line in lines:
-
-        # skip header.
-        if line_cnt == 0:
-            line_cnt += 1
-            continue
 
         # tokenize.
         tokens = line.strip().split("\t")
 
-        #for i,t in enumerate(tokens):
-        #  print(i,t)
-        #break
-      
+        print(len(tokens))
 
+        # skip header.
+        if line_cnt == 0:
+            if len(tokens) == 9:
+              old_style = True
+            line_cnt += 1
+            continue
+    
         def try_to_set(i, tokens):
           try:
             v = tokens[i]
@@ -66,6 +66,7 @@ def build_oncotree(file_path=False):
             v = None
           return v
 
+        # check for version.
         history = try_to_set(11, tokens)
         metaumls = try_to_set(10, tokens)
         metanci = try_to_set(9, tokens)
@@ -79,7 +80,10 @@ def build_oncotree(file_path=False):
         level2 = try_to_set(1, tokens)
         level1 = try_to_set(0, tokens)
 
-        levels = [level1, level2, level3, level4, level5, level6, level7]
+        if old_style:
+          levels = [level1, level2, level3, level4, level5]
+        else:
+          levels = [level1, level2, level3, level4, level5, level6, level7]
 
         #print(metanci, metamaintype)
         #print(levels)

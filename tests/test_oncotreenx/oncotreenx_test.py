@@ -18,22 +18,33 @@ class TestOncotreenxConstruction:
     def teardown(self):
         pass
 
+    def test_build_oncotree_old(self):
+
+        # build the tree.
+        g = build_oncotree(file_path='data/tumor_types.old.txt')
+
+        # assert we have some nodes.
+        assert len(g.nodes()) > 10
+
     def test_build_oncotree(self):
 
         # build the tree.
-        g = build_oncotree()
+        g = build_oncotree(file_path='data/tumor_types.txt')
 
         # assert we have some nodes.
         assert len(g.nodes()) > 10
 
     def test_ncit(self):
 
-        # build the tree.
-        g = build_oncotree()
+        # loop over tree type.
+        for x in ['data/tumor_types.old.txt', 'data/tumor_types.txt']:
+          
+          # build the tree.
+          g = build_oncotree(file_path=x)
 
-        # spot check several values.
-        g.node['BLOOD']['metanci'] == 'C12434'
-        g.node['PT']['metanci'] == 'C7575'
+          # spot check several values.
+          g.node['BLOOD']['metanci'] == 'C12434'
+          g.node['PT']['metanci'] == 'C7575'
 
 
 class TestOncotreenxMethods:
