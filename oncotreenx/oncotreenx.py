@@ -50,8 +50,6 @@ def build_oncotree(file_path=False):
         # tokenize.
         tokens = line.strip().split("\t")
 
-        print(len(tokens))
-
         # skip header.
         if line_cnt == 0:
             if len(tokens) == 9:
