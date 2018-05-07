@@ -94,23 +94,23 @@ def build_oncotree(file_path=False):
         for i in range(0, len(levels)):
 
             # check if empty.
-            if levels[i] == "":
+            print levels
+            if levels[i] == "" or len(levels[i].split("(")) < 2:
                 continue
 
             # split into two.
             tmp = levels[i].split("(")
             val = tmp[0].strip().replace('"', '').replace("'", '')
-            key = tmp[1].strip().replace("(","").replace(")","").replace('"', '').replace("'", '')
+            key = tmp[1].strip().replace("(", "").replace(")", "").replace('"', '').replace("'", '')
 
             # build node.
             g.add_node(key,
-                text=val,
-                metamaintype=metamaintype,
-                metacolor=metacolor,
-                metanci=metanci,
-                metaumls=metaumls,
-                history=history
-            )
+                       text=val,
+                       metamaintype=metamaintype,
+                       metacolor=metacolor,
+                       metanci=metanci,
+                       metaumls=metaumls,
+                       history=history)
             n = key
 
             # add edge.
