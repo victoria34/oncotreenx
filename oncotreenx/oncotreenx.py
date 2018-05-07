@@ -94,8 +94,7 @@ def build_oncotree(file_path=False):
         for i in range(0, len(levels)):
 
             # check if empty.
-            print levels
-            if levels[i] == "" or len(levels[i].split("(")) < 2:
+            if levels[i] == "" or levels is None:
                 continue
 
             # split into two.
