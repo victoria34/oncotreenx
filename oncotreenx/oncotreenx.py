@@ -16,7 +16,7 @@ FILE_URL = "http://oncotree.mskcc.org/api/tumor_types.txt"
 
 ## functions
 
-def build_oncotree(file_path=False):
+def build_oncotree(file_path=False, metamaintype_col=7):
 
     # load the file.
     if not file_path:
@@ -69,7 +69,7 @@ def build_oncotree(file_path=False):
         metaumls = try_to_set(10, tokens)
         metanci = try_to_set(9, tokens)
         metacolor = try_to_set(8, tokens)
-        metamaintype = try_to_set(7, tokens)
+        metamaintype = try_to_set(metamaintype_col, tokens)
         level7 = try_to_set(6, tokens)
         level6 = try_to_set(5, tokens)
         level5 = try_to_set(4, tokens)
